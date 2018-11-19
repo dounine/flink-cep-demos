@@ -1,2 +1,6 @@
 # flink-cep-demos
-flink-cep demos for 1.8
+flink-cep-demos
+
+## child projects
+user-login-attack
+
