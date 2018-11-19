@@ -8,6 +8,8 @@ import org.apache.flink.cep.pattern.conditions.IterativeCondition;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.windowing.time.Time;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,8 +17,11 @@ import java.util.Map;
 
 public class FlinkLoginFail {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(FlinkLoginFail.class);
+
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+
         DataStream<LoginEvent> loginEventStream = env.fromCollection(Arrays.asList(
                 new LoginEvent("1","192.168.0.1","fail"),
                 new LoginEvent("1","192.168.0.2","fail"),
@@ -56,6 +61,7 @@ public class FlinkLoginFail {
 
         env.execute();
 
+        LOGGER.info("finish");
     }
 
 }
