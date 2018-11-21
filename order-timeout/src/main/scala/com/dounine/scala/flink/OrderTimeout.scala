@@ -20,9 +20,9 @@ object OrderTimeout {
 
     val env = StreamExecutionEnvironment.getExecutionEnvironment
 
-    val loginEventStream = env.fromCollection(new DataSource())
+    val orderEventStream = env.fromCollection(new DataSource())
 
-    val loginFailPattern = Pattern.begin[OrderEvent]("begin")
+    val orderPayPattern = Pattern.begin[OrderEvent]("begin")
       .where(_.`type`.equals("create"))
       .next("next")
       .where(_.`type`.equals("pay"))
@@ -30,7 +30,7 @@ object OrderTimeout {
 
     val orderTiemoutOutput = OutputTag[OrderEvent]("orderTimeout")
 
-    val patternStream = CEP.pattern(loginEventStream.keyBy("userId"), loginFailPattern)
+    val patternStream = CEP.pattern(orderEventStream.keyBy("userId"), orderPayPattern)
 
     val complexResult = patternStream.select(orderTiemoutOutput) {
       (pattern: Map[String, Iterable[OrderEvent]], timestamp: Long) => {
@@ -77,9 +77,4 @@ case class OrderEvent(
                        userId: String,
                        `type`: String
                      )
-
-case class OrderWarning(
-                         userId: String,
-                         `type`: String
-                       )
 
