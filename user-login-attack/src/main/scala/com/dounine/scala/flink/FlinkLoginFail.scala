@@ -28,7 +28,7 @@ object FlinkLoginFail {
       .times(2)
       .within(Time.seconds(1))
 
-    val patternStream = CEP.pattern(loginEventStream, loginFailPattern)
+    val patternStream = CEP.pattern(loginEventStream.keyBy("userId"), loginFailPattern)
 
     val loginFailDataStream = patternStream
       .select((pattern: Map[String, Iterable[LoginEvent]]) => {

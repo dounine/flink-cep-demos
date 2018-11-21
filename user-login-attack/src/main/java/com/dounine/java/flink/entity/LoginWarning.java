@@ -1,4 +1,4 @@
-package entity;
+package com.dounine.java.flink.entity;
 
 public class LoginWarning {
     private String userId;

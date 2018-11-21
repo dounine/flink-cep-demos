@@ -1,6 +1,6 @@
-import entity.LoginEvent;
+import com.dounine.java.flink.entity.LoginEvent;
 
-import entity.LoginWarning;
+import com.dounine.java.flink.entity.LoginWarning;
 import org.apache.flink.cep.CEP;
 import org.apache.flink.cep.PatternStream;
 import org.apache.flink.cep.pattern.Pattern;

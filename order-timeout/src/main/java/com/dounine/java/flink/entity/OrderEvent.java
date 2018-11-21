@@ -1,16 +1,14 @@
-package entity;
+package com.dounine.java.flink.entity;
 
-public class LoginEvent {
+import java.io.Serializable;
+
+public class OrderEvent implements Serializable {
+
     private String userId;
-    private String ip;
     private String type;
 
-    public LoginEvent() {
-    }
-
-    public LoginEvent(String userId, String ip, String type) {
+    public OrderEvent(String userId, String type) {
         this.userId = userId;
-        this.ip = ip;
         this.type = type;
     }
 
@@ -30,11 +28,11 @@ public class LoginEvent {
         this.type = type;
     }
 
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
+    @Override
+    public String toString() {
+        return "OrderEvent{" +
+                "userId='" + userId + '\'' +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

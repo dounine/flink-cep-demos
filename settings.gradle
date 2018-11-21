@@ -3,3 +3,6 @@ rootProject.name = 'flink-cep-demos'
 include ':user-login-attack'
 project(':user-login-attack').projectDir = new File(rootProject.projectDir, './user-login-attack')
 
+include ':order-timeout'
+project(':order-timeout').projectDir = new File(rootProject.projectDir, './order-timeout')
+
